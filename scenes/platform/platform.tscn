@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://c23ny0nnj4eb6"]
 
+[ext_resource type="Script" uid="uid://dn2p3bvw8fy2k" path="res://scenes/platform/platform.gd" id="1_8pv2r"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u8ps"]
 albedo_color = Color(0.54166675, 0, 0.65, 1)
 
@@ -10,7 +12,60 @@ size = Vector3(3, 0.5, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_blt1j"]
 size = Vector3(3, 0.5, 3)
 
+[sub_resource type="Animation" id="Animation_8pv2r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7j252"]
+resource_name = "vanish"
+length = 1.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.90000004, 1.1, 1.3000001, 1.5, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"vanish"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_34mie"]
+_data = {
+&"RESET": SubResource("Animation_8pv2r"),
+&"vanish": SubResource("Animation_7j252")
+}
+
 [node name="Platform" type="Node3D" unique_id=699956944]
+script = ExtResource("1_8pv2r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1004899338]
 mesh = SubResource("BoxMesh_blt1j")
@@ -19,3 +74,13 @@ mesh = SubResource("BoxMesh_blt1j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2035567710]
 shape = SubResource("BoxShape3D_blt1j")
+
+[node name="VanishTimer" type="Timer" parent="." unique_id=615449158]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=551212900]
+libraries/ = SubResource("AnimationLibrary_34mie")
+
+[connection signal="timeout" from="VanishTimer" to="." method="_on_vanish_timer_timeout"]

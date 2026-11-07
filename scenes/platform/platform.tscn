@@ -43,26 +43,16 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(1, 1, 1), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(1.2, 1.2, 1.2), Vector3(0.8, 0.8, 0.8), Vector3(0, 0, 0)]
 }
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.8),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"vanish"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_34mie"]
 _data = {
 &"RESET": SubResource("Animation_8pv2r"),
 &"vanish": SubResource("Animation_7j252")
 }
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lxpsg"]
+height = 0.18164063
+radius = 1.3574219
 
 [node name="Platform" type="Node3D" unique_id=699956944]
 script = ExtResource("1_8pv2r")
@@ -76,11 +66,18 @@ mesh = SubResource("BoxMesh_blt1j")
 shape = SubResource("BoxShape3D_blt1j")
 
 [node name="VanishTimer" type="Timer" parent="." unique_id=615449158]
-wait_time = 4.0
+wait_time = 3.0
 one_shot = true
-autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=551212900]
 libraries/ = SubResource("AnimationLibrary_34mie")
 
+[node name="Area3D" type="Area3D" parent="." unique_id=821248395]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1628612335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27886105, 0)
+shape = SubResource("CylinderShape3D_lxpsg")
+
 [connection signal="timeout" from="VanishTimer" to="." method="_on_vanish_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,5 +1,4 @@
 class_name Player
-
 extends CharacterBody3D
 
 const GRAVITY: float = 20

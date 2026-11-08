@@ -7,5 +7,3 @@
 script = ExtResource("1_eoeca")
 
 [node name="Platform" parent="." unique_id=699956944 instance=ExtResource("2_wtxcb")]
-
-[connection signal="player_landed" from="Platform" to="." method="_on_platform_player_landed"]

@@ -1,8 +1,6 @@
 class_name Platform
 extends Node3D
 
-signal player_landed(platform_pos: Vector3)
-
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var vanish_timer: Timer = $VanishTimer
 @onready var area_3d: Area3D = $Area3D
@@ -32,5 +30,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body is Player:
 		area_3d.body_entered.disconnect(_on_area_3d_body_entered)
+
 		vanish_timer.start()
-		player_landed.emit(position)
+
+		SignalHub.emit_player_landed_on_platform(position)

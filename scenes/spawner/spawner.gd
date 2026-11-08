@@ -8,12 +8,8 @@ func _enter_tree() -> void:
 	SignalHub.player_landed_on_platform.connect(_on_player_landed_on_platform)
 
 
-func swapn_platform(old_platform_pos: Vector3) -> void:
+func _on_player_landed_on_platform(platform_pos: Vector3) -> void:
 	var new_platform: Platform = platform_scene.instantiate()
-	new_platform.position = Vector3(old_platform_pos.x + 2, old_platform_pos.y + 5, old_platform_pos.z + 2)
+	new_platform.position = Vector3(platform_pos.x + 2, platform_pos.y + 5, platform_pos.z + 2)
 
 	add_child(new_platform)
-
-
-func _on_player_landed_on_platform(platform_pos: Vector3) -> void:
-	swapn_platform(platform_pos)

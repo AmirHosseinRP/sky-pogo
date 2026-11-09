@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dqe8s5uspmuiu" path="res://scenes/player/player.gd" id="1_8afob"]
 [ext_resource type="Texture2D" uid="uid://dld2twxl4a8uw" path="res://assets/models/kenney/Textures/colormap.png" id="2_dovo2"]
+[ext_resource type="AudioStream" uid="uid://cstrajfi7cddr" path="res://assets/sounds/Land1.wav" id="3_0owmy"]
+[ext_resource type="AudioStream" uid="uid://dglben73iw5wv" path="res://assets/sounds/Land2.wav" id="4_qek5x"]
+[ext_resource type="AudioStream" uid="uid://dj7d5oqannrfv" path="res://assets/sounds/Land3.wav" id="5_5gtgg"]
+[ext_resource type="AudioStream" uid="uid://di5jhmsmju78p" path="res://assets/sounds/Land4.wav" id="6_h17s1"]
+[ext_resource type="AudioStream" uid="uid://411lc5bxeeef" path="res://assets/sounds/Land5.wav" id="7_je7p5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_blt1j"]
 radius = 0.325
@@ -2707,6 +2712,14 @@ _data = {
 &"wheelchair-sit": SubResource("Animation_5mf0n")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_blt1j"]
+streams_count = 5
+stream_0/stream = ExtResource("3_0owmy")
+stream_1/stream = ExtResource("4_qek5x")
+stream_2/stream = ExtResource("5_5gtgg")
+stream_3/stream = ExtResource("6_h17s1")
+stream_4/stream = ExtResource("7_je7p5")
+
 [node name="Player" type="CharacterBody3D" unique_id=5580449]
 script = ExtResource("1_8afob")
 
@@ -2780,3 +2793,6 @@ skeleton = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=199184078]
 libraries/ = SubResource("AnimationLibrary_4hvnv")
+
+[node name="LandEffect" type="AudioStreamPlayer3D" parent="." unique_id=206035171]
+stream = SubResource("AudioStreamRandomizer_blt1j")

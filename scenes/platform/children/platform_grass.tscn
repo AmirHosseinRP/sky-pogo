@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cc77rba5qd0jw"]
+
+[ext_resource type="PackedScene" uid="uid://c23ny0nnj4eb6" path="res://scenes/platform/platform.tscn" id="1_7m6qh"]
+[ext_resource type="ArrayMesh" uid="uid://bxyoro7ch5vsk" path="res://resources/grass_platform_mesh.tres" id="2_u4dgc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j7t3x"]
+size = Vector3(3, 2.065, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u4dgc"]
+size = Vector3(2.8, 0.1, 2.8)
+
+[node name="PlatformGrass" unique_id=699956944 instance=ExtResource("1_7m6qh")]
+
+[node name="MeshInstance3D" parent="." index="0" unique_id=1004899338]
+mesh = ExtResource("2_u4dgc")
+
+[node name="CollisionShape3D" parent="StaticBody3D" parent_id_path=PackedInt32Array(1745764898) index="0" unique_id=2035567710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.455, 0)
+shape = SubResource("BoxShape3D_j7t3x")
+
+[node name="Area3D" parent="." index="4" unique_id=821248395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="CollisionShape3D" parent="Area3D" index="0" unique_id=1628612335]
+shape = SubResource("BoxShape3D_u4dgc")

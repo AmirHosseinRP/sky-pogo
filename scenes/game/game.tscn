@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://b2yy3axurey8"]
 
+[ext_resource type="Script" uid="uid://chh1c0kgbv05u" path="res://scenes/game/game.gd" id="1_lfrn8"]
 [ext_resource type="Texture2D" uid="uid://dc0hxkxlp6fk6" path="res://assets/images/skybox-cliffside.hdr" id="1_sul5r"]
 [ext_resource type="PackedScene" uid="uid://cxouyjm7mm48d" path="res://scenes/spawner/spawner.tscn" id="2_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://dqnnk454pwolf" path="res://scenes/player/player.tscn" id="3_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://bos2dx4wy3gbh" path="res://scenes/game_camera/game_camera.tscn" id="4_kelw5"]
+[ext_resource type="AudioStream" uid="uid://b7x87hy1u76pm" path="res://assets/sounds/Arroz Con Pollo.mp3" id="6_5i0tg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0sr1o"]
 panorama = ExtResource("1_sul5r")
@@ -16,7 +18,10 @@ background_mode = 2
 sky = SubResource("Sky_sul5r")
 glow_enabled = true
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_blt1j"]
+
 [node name="Game" type="Node" unique_id=285235533]
+script = ExtResource("1_lfrn8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=528541480]
 environment = SubResource("Environment_7h61r")
@@ -31,4 +36,17 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9838743, 0)
 
 [node name="GameCamera" parent="." unique_id=373856599 instance=ExtResource("4_kelw5")]
-transform = Transform3D(-1, -6.696974e-08, 5.619429e-08, 0, 0.6427877, 0.76604456, -8.742278e-08, 0.76604456, -0.6427877, 0, 12, -8)
+transform = Transform3D(-1, -6.696973e-08, 5.619429e-08, -2.2689107e-08, 0.819576, 0.57297057, -8.442717e-08, 0.57297057, -0.81957597, 0, 14, -8)
+
+[node name="DeathZone" type="Area3D" parent="." unique_id=620854482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathZone" unique_id=2070609810]
+shape = SubResource("WorldBoundaryShape3D_blt1j")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1938944757]
+stream = ExtResource("6_5i0tg")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]

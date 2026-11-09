@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://be53qc15k0arn"]
+
+[ext_resource type="PackedScene" uid="uid://c23ny0nnj4eb6" path="res://scenes/platform/platform.tscn" id="1_yx0ey"]
+[ext_resource type="ArrayMesh" uid="uid://c768ibk2n1knc" path="res://resources/cirus_platform_mesh.tres" id="2_v3tb1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_b8qj8"]
+height = 0.7507626
+radius = 1.217
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_phq5i"]
+height = 0.1
+radius = 1.137
+
+[node name="PlatformCircus" unique_id=699956944 instance=ExtResource("1_yx0ey")]
+
+[node name="MeshInstance3D" parent="." index="0" unique_id=1004899338]
+mesh = ExtResource("2_v3tb1")
+
+[node name="CollisionShape3D" parent="StaticBody3D" parent_id_path=PackedInt32Array(1745764898) index="0" unique_id=2035567710]
+shape = SubResource("CylinderShape3D_b8qj8")
+
+[node name="Area3D" parent="." index="4" unique_id=821248395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
+
+[node name="CollisionShape3D" parent="Area3D" index="0" unique_id=1628612335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.274, 0)
+shape = SubResource("CylinderShape3D_phq5i")

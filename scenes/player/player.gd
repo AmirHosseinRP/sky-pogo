@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var land_effect: AudioStreamPlayer3D = $LandEffect
 
 const GRAVITY: float = 20
 const JUMP_FORCE: float = 18
@@ -22,6 +23,7 @@ func _physics_process(delta: float) -> void:
 func hadle_gravity(delta: float) -> void:
 	if is_on_floor():
 		velocity.y = JUMP_FORCE
+		land_effect.play()
 	else:
 		velocity.y -= GRAVITY * delta
 

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://d0qfnygpfl8x8"]
+
+[ext_resource type="PackedScene" uid="uid://c23ny0nnj4eb6" path="res://scenes/platform/platform.tscn" id="1_uli02"]
+[ext_resource type="ArrayMesh" uid="uid://chmdmtbg11x7r" path="res://resources/snow_platform_mesh.tres" id="2_v0ly8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xeqdk"]
+size = Vector3(3, 1.47, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ovhxw"]
+size = Vector3(2.9, 0.1, 2.9)
+
+[node name="PlatformSnow" unique_id=699956944 instance=ExtResource("1_uli02")]
+
+[node name="MeshInstance3D" parent="." index="0" unique_id=1004899338]
+mesh = ExtResource("2_v0ly8")
+
+[node name="CollisionShape3D" parent="StaticBody3D" parent_id_path=PackedInt32Array(1745764898) index="0" unique_id=2035567710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.755, 0)
+shape = SubResource("BoxShape3D_xeqdk")
+
+[node name="Area3D" parent="." index="4" unique_id=821248395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24, 0)
+
+[node name="CollisionShape3D" parent="Area3D" index="0" unique_id=1628612335]
+shape = SubResource("BoxShape3D_ovhxw")

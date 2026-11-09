@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ewivpr2yvp7c"]
+
+[ext_resource type="PackedScene" uid="uid://c23ny0nnj4eb6" path="res://scenes/platform/platform.tscn" id="1_5sggl"]
+[ext_resource type="ArrayMesh" uid="uid://drlvpkrqw202m" path="res://resources/trampoline_platform_mesh.tres" id="2_2nmap"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uli02"]
+size = Vector3(2.6, 0.435, 2.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5sggl"]
+size = Vector3(2.3, 0.1, 2.3)
+
+[node name="PlatformTrampoline" unique_id=699956944 instance=ExtResource("1_5sggl")]
+
+[node name="MeshInstance3D" parent="." index="0" unique_id=1004899338]
+mesh = ExtResource("2_2nmap")
+
+[node name="CollisionShape3D" parent="StaticBody3D" parent_id_path=PackedInt32Array(1745764898) index="0" unique_id=2035567710]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+shape = SubResource("BoxShape3D_uli02")
+
+[node name="Area3D" parent="." index="4" unique_id=821248395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.02, 0)
+
+[node name="CollisionShape3D" parent="Area3D" index="0" unique_id=1628612335]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0.27886105, 0)
+shape = SubResource("BoxShape3D_5sggl")

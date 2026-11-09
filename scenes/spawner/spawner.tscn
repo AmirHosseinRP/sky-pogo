@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://cxouyjm7mm48d"]
 
 [ext_resource type="Script" uid="uid://ci6bt2t4jb3kn" path="res://scenes/spawner/spawner.gd" id="1_eoeca"]
-[ext_resource type="PackedScene" uid="uid://c23ny0nnj4eb6" path="res://scenes/platform/platform.tscn" id="2_wtxcb"]
+[ext_resource type="PackedScene" uid="uid://be53qc15k0arn" path="res://scenes/platform/children/platform_circus.tscn" id="2_4t4hp"]
+[ext_resource type="PackedScene" uid="uid://ewivpr2yvp7c" path="res://scenes/platform/children/platform_trampoline.tscn" id="2_wtxcb"]
+[ext_resource type="PackedScene" uid="uid://cc77rba5qd0jw" path="res://scenes/platform/children/platform_grass.tscn" id="3_eixug"]
+[ext_resource type="PackedScene" uid="uid://b6ocdbv7q5wey" path="res://scenes/platform/children/platform_layer.tscn" id="4_xodbr"]
+[ext_resource type="PackedScene" uid="uid://d0qfnygpfl8x8" path="res://scenes/platform/children/platform_snow.tscn" id="5_kmkwk"]
 
 [node name="Spawner" type="Node" unique_id=1490168861]
 script = ExtResource("1_eoeca")
+platform_scenes_list = Array[PackedScene]([ExtResource("2_4t4hp"), ExtResource("3_eixug"), ExtResource("4_xodbr"), ExtResource("5_kmkwk"), ExtResource("2_wtxcb")])
 
-[node name="Platform" parent="." unique_id=699956944 instance=ExtResource("2_wtxcb")]
+[node name="PlatformTrampoline" parent="." unique_id=699956944 instance=ExtResource("2_wtxcb")]

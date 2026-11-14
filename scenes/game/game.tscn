@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dqnnk454pwolf" path="res://scenes/player/player.tscn" id="3_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://bos2dx4wy3gbh" path="res://scenes/game_camera/game_camera.tscn" id="4_kelw5"]
 [ext_resource type="AudioStream" uid="uid://b7x87hy1u76pm" path="res://assets/sounds/Arroz Con Pollo.mp3" id="6_5i0tg"]
+[ext_resource type="PackedScene" uid="uid://dlwvh3l6eamxn" path="res://scenes/hud/hud.tscn" id="7_bdhmt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0sr1o"]
 panorama = ExtResource("1_sul5r")
@@ -47,6 +48,7 @@ shape = SubResource("WorldBoundaryShape3D_blt1j")
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1938944757]
 stream = ExtResource("6_5i0tg")
 volume_db = -10.0
-autoplay = true
+
+[node name="Hud" parent="." unique_id=694248955 instance=ExtResource("7_bdhmt")]
 
 [connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]

@@ -3,11 +3,24 @@ extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var land_effect: AudioStreamPlayer3D = $LandEffect
+@onready var fall_effect: AudioStreamPlayer3D = $FallEffect
 
 const GRAVITY: float = 20
 const JUMP_FORCE: float = 18
 const MOVEMENT_SPEED: float = 6
 const ROTATION_SPEED: float = 3
+const FALL_OFF_THRESHOLD: float = -20
+
+var start_height: float = 0.0
+var score_height: float = 0.0
+
+
+func _ready() -> void:
+	start_height = position.y
+
+	await get_tree().process_frame
+
+	SignalHub.emit_new_height_reached(score_height)
 
 
 func _physics_process(delta: float) -> void:
@@ -18,6 +31,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	hadle_animation()
+	hadle_death()
+	update_best_height()
 
 
 func hadle_gravity(delta: float) -> void:
@@ -54,3 +69,14 @@ func hadle_animation() -> void:
 		animation_player.play("jump")
 	else:
 		animation_player.play("fall")
+
+
+func hadle_death() -> void:
+	if velocity.y < FALL_OFF_THRESHOLD && !fall_effect.playing:
+		fall_effect.play()
+
+
+func update_best_height() -> void:
+	if position.y - start_height > score_height:
+		score_height = position.y - start_height
+		SignalHub.emit_new_height_reached(score_height)

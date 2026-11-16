@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dc0hxkxlp6fk6"
 path.bptc="res://.godot/imported/skybox-cliffside.hdr-790cde4c1ed269a8cd02990e46a26cb0.bptc.ctex"
+path.astc="res://.godot/imported/skybox-cliffside.hdr-790cde4c1ed269a8cd02990e46a26cb0.astc.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/images/skybox-cliffside.hdr"
-dest_files=["res://.godot/imported/skybox-cliffside.hdr-790cde4c1ed269a8cd02990e46a26cb0.bptc.ctex"]
+dest_files=["res://.godot/imported/skybox-cliffside.hdr-790cde4c1ed269a8cd02990e46a26cb0.bptc.ctex", "res://.godot/imported/skybox-cliffside.hdr-790cde4c1ed269a8cd02990e46a26cb0.astc.ctex"]
 
 [params]
 

@@ -2,6 +2,64 @@
 
 [ext_resource type="LabelSettings" uid="uid://bbv17hr0jp0ec" path="res://resources/label_white_48.tres" id="1_48c2t"]
 [ext_resource type="Script" uid="uid://7vspc0cjk7ea" path="res://scenes/hud/hud.gd" id="1_cgeww"]
+[ext_resource type="FontFile" uid="uid://ce4rgtysfet1r" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="3_c45xl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0bx4p"]
+font = ExtResource("3_c45xl")
+font_size = 96
+font_color = Color(0.91, 0, 0.34883323, 1)
+outline_size = 20
+outline_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.62352943)
+
+[sub_resource type="LabelSettings" id="LabelSettings_c45xl"]
+font = ExtResource("3_c45xl")
+font_size = 38
+font_color = Color(0, 0.68, 0.4306666, 1)
+outline_size = 14
+outline_color = Color(0.11764706, 0.11764706, 0.11764706, 1)
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.62352943)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blt1j"]
+content_margin_top = 12.0
+bg_color = Color(0.34666672, 0, 0.8, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bx4p"]
+content_margin_top = 12.0
+bg_color = Color(0.29411766, 0, 0.6784314, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c45xl"]
+content_margin_top = 12.0
+bg_color = Color(0.4509804, 0.18431373, 0.8, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Hud" type="Control" unique_id=694248955]
 layout_mode = 3
@@ -39,3 +97,62 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 text = "Best: 0"
 label_settings = ExtResource("1_48c2t")
+
+[node name="GameOverScreen" type="ColorRect" parent="." unique_id=1814594890]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12326486, 0.51417756, 0.8083059, 0.43529412)
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverScreen" unique_id=2025811650]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.0
+offset_top = -70.0
+offset_right = 255.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverScreen/CenterContainer" unique_id=1794039496]
+layout_mode = 2
+
+[node name="GameOverLabel" type="Label" parent="GameOverScreen/CenterContainer/VBoxContainer" unique_id=2050646310]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Over"
+label_settings = SubResource("LabelSettings_0bx4p")
+
+[node name="NewBestLabel" type="Label" parent="GameOverScreen/CenterContainer/VBoxContainer" unique_id=743023744]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "New Best Record: 0"
+label_settings = SubResource("LabelSettings_c45xl")
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/CenterContainer/VBoxContainer" unique_id=118883516]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 10
+
+[node name="Button" type="Button" parent="GameOverScreen/CenterContainer/VBoxContainer/MarginContainer" unique_id=895369002]
+custom_minimum_size = Vector2(150, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_c45xl")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_blt1j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0bx4p")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c45xl")
+text = "Reset"
+
+[connection signal="pressed" from="GameOverScreen/CenterContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

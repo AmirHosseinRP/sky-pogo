@@ -38,3 +38,7 @@ func _on_game_over() -> void:
 
 func _on_button_pressed() -> void:
 	get_tree().call_deferred("reload_current_scene")
+
+
+func _on_exit_button_pressed() -> void:
+	get_tree().quit()

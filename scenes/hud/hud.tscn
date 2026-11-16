@@ -61,6 +61,45 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgtrf"]
+content_margin_top = 12.0
+bg_color = Color(0.5918442, 0, 0.25497139, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7mo4"]
+content_margin_top = 12.0
+bg_color = Color(0.5411765, 0, 0.23529412, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n56i7"]
+content_margin_top = 12.0
+bg_color = Color(0.6, 0, 0.25882354, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.16078432, 0.16078432, 0.16078432, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
 [node name="Hud" type="Control" unique_id=694248955]
 layout_mode = 3
 anchors_preset = 15
@@ -136,12 +175,12 @@ size_flags_horizontal = 4
 text = "New Best Record: 0"
 label_settings = SubResource("LabelSettings_c45xl")
 
-[node name="MarginContainer" type="MarginContainer" parent="GameOverScreen/CenterContainer/VBoxContainer" unique_id=118883516]
+[node name="ResetContainer" type="MarginContainer" parent="GameOverScreen/CenterContainer/VBoxContainer" unique_id=118883516]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/margin_top = 10
 
-[node name="Button" type="Button" parent="GameOverScreen/CenterContainer/VBoxContainer/MarginContainer" unique_id=895369002]
+[node name="ResetButton" type="Button" parent="GameOverScreen/CenterContainer/VBoxContainer/ResetContainer" unique_id=895369002]
 custom_minimum_size = Vector2(150, 58)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -155,4 +194,25 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_0bx4p")
 theme_override_styles/hover = SubResource("StyleBoxFlat_c45xl")
 text = "Reset"
 
-[connection signal="pressed" from="GameOverScreen/CenterContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]
+[node name="ExitContainer" type="MarginContainer" parent="GameOverScreen/CenterContainer/VBoxContainer" unique_id=1493124062]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 5
+
+[node name="ExitButton" type="Button" parent="GameOverScreen/CenterContainer/VBoxContainer/ExitContainer" unique_id=1599030859]
+custom_minimum_size = Vector2(110, 58)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_default_cursor_shape = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_c45xl")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_mgtrf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v7mo4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_n56i7")
+text = "Exit
+"
+
+[connection signal="pressed" from="GameOverScreen/CenterContainer/VBoxContainer/ResetContainer/ResetButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="GameOverScreen/CenterContainer/VBoxContainer/ExitContainer/ExitButton" to="." method="_on_exit_button_pressed"]
